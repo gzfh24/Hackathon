@@ -1,0 +1,11 @@
+{
+    "name": "Spotify Recommendations",
+    "version": "1.0.0",
+    "description": "Recommends spotify music",
+    "manifest_version": 3,
+    "author": "Scott and George",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": ""
+    }
+}
