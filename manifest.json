@@ -1,11 +1,12 @@
 {
-    "name": "Spotify Recommendations",
+    "name": "Dopple",
     "version": "1.0.0",
-    "description": "Recommends spotify music",
+    "description": "Recommends Similar Artists",
     "manifest_version": 3,
     "author": "Scott and George",
     "action":{
         "default_popup": "index.html",
         "default_title": ""
     }
+    
 }

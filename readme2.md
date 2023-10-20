@@ -1,3 +1,12 @@
+for (let i = 0; i <= 5; i++){
+  //create and append to DOM
+  result.artists[i].name
+  // create and append to DOM
+  result.artists[i].external_urls.spotify
+}
+
+result.artists.
+
 { artists: 
    [ { external_urls: { spotify: 'https://open.spotify.com/artist/1RyvyyTE3xzB2ZywiAwp0i' },
        followers: { href: null, total: 15134686 },

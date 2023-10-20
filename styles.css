@@ -1,5 +1,61 @@
 body{
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-  background-color: aquamarine;
+  width: 200px;
+  background-color: #f0efed;
+  border: none;
+}
+
+.question-text{
+  text-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
+  color: #1db954;
+}
+
+h3{
+  text-align: center;
+  font-family: 'Nanum Gothic', sans-serif;
+  color: #1db954;
+}
+
+#form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+#form-input{
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border: solid 1px #1db954;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
+}
+
+#submit-btn{
+  border: none;
+  background-color: #1ed760;
+  border-radius: 10px;
+  height: 20px;
+  font-family: 'Nanum Gothic', sans-serif;
+  margin-bottom: 10px;
+}
+
+#submit-btn:hover{
+  cursor: pointer;
+  background-color: #1db954;
+}
+
+#submit-btn:focus{
+  cursor: pointer;
+  filter: invert();
+}
+
+.data-container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
