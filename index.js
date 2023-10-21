@@ -84,37 +84,44 @@ async function bigBoi() {
     };
 
     try {
-      const response = await fetch(url, options);
-      const result = await response.json();
+      const fresponse = await fetch(url, options);
+      const result = await fresponse.json();
       // console.log(result);
-      for (let i = 0; i <= 5 && result.artists[i] !== undefined; i++) {
-        // second condition in for loop in case there aren't enough similar artists
-        //create and append to DOM
-        const artistContainer = document.createElement('div');
-        artistContainer.classList.add('artistContainer')
+      if (result.artists.length === 0) {
+        simArtistContainer.removeChild(response);
+        const noSimArtists = document.createElement("p");
+        noSimArtists.classList.add("sim-artist");
+        noSimArtists.innerText = "No similar artists could be found";
+        simArtistContainer.appendChild(noSimArtists);
+      } else {
+        for (let i = 0; i <= 5 && result.artists[i] !== undefined; i++) {
+          // second condition in for loop in case there aren't enough similar artists
+          //create and append to DOM
+          const artistContainer = document.createElement("div");
+          artistContainer.classList.add("artistContainer");
 
-
-        const name = document.createElement("p");
-        name.classList.add("sim-artist");
-        name.innerText = result.artists[i].name;
-        artistContainer.appendChild(name);
-        // console.log(result.artists[i].name)
-        // create and append image to DOM
-        const imageContainer = document.createElement("div");
-        artistContainer.appendChild(imageContainer);
-        const image = document.createElement("img");
-        image.src = result.artists[i].images[0].url;
-        image.classList.add("art-image")
-        imageContainer.appendChild(image);
-        // create and append to DOM
-        const url = document.createElement("a");
-        url.classList.add("sim-url");
-        url.setAttribute("href", result.artists[i].external_urls.spotify);
-        url.setAttribute("target", "_blank");
-        url.innerText = "Listen Here";
-        artistContainer.appendChild(url);
-        // console.log(result.artists[i].external_urls.spotify)
-        simArtistContainer.appendChild(artistContainer);
+          const name = document.createElement("p");
+          name.classList.add("sim-artist");
+          name.innerText = result.artists[i].name;
+          artistContainer.appendChild(name);
+          // console.log(result.artists[i].name)
+          // create and append image to DOM
+          const imageContainer = document.createElement("div");
+          artistContainer.appendChild(imageContainer);
+          const image = document.createElement("img");
+          image.src = result.artists[i].images[0].url;
+          image.classList.add("art-image");
+          imageContainer.appendChild(image);
+          // create and append to DOM
+          const url = document.createElement("a");
+          url.classList.add("sim-url");
+          url.setAttribute("href", result.artists[i].external_urls.spotify);
+          url.setAttribute("target", "_blank");
+          url.innerText = "Listen Here";
+          artistContainer.appendChild(url);
+          // console.log(result.artists[i].external_urls.spotify)
+          simArtistContainer.appendChild(artistContainer);
+        }
       }
     } catch (error) {
       console.error(error);
