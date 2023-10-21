@@ -61,6 +61,7 @@ async function bigBoi() {
     } catch (error) {
       console.error(error);
       console.log("Search ID error");
+      simArtistContainer.removeChild(response);
       const noArtistFound = document.createElement("p");
       noArtistFound.classList.add("sim-artist");
       noArtistFound.innerText = "Artist could not be found";
@@ -89,17 +90,21 @@ async function bigBoi() {
       for (let i = 0; i <= 5 && result.artists[i] !== undefined; i++) {
         // second condition in for loop in case there aren't enough similar artists
         //create and append to DOM
+        const artistContainer = document.createElement('div');
+        artistContainer.classList.add('artistContainer')
+
+
         const name = document.createElement("p");
         name.classList.add("sim-artist");
         name.innerText = result.artists[i].name;
-        simArtistContainer.appendChild(name);
+        artistContainer.appendChild(name);
         // console.log(result.artists[i].name)
         // create and append image to DOM
         const imageContainer = document.createElement("div");
-        simArtistContainer.appendChild(imageContainer);
+        artistContainer.appendChild(imageContainer);
         const image = document.createElement("img");
         image.src = result.artists[i].images[0].url;
-        image.classList.add("image")
+        image.classList.add("art-image")
         imageContainer.appendChild(image);
         // create and append to DOM
         const url = document.createElement("a");
@@ -107,8 +112,9 @@ async function bigBoi() {
         url.setAttribute("href", result.artists[i].external_urls.spotify);
         url.setAttribute("target", "_blank");
         url.innerText = "Listen Here";
-        simArtistContainer.appendChild(url);
+        artistContainer.appendChild(url);
         // console.log(result.artists[i].external_urls.spotify)
+        simArtistContainer.appendChild(artistContainer);
       }
     } catch (error) {
       console.error(error);
