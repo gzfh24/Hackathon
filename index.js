@@ -20,18 +20,18 @@ let artistID = "";
 let token;
 
 fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials&client_id=7cd68b30da0c423dabba304bc46ac8ea&client_secret=e3903bf524744be4835f818adf5f64bc",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: "grant_type=client_credentials&client_id=7cd68b30da0c423dabba304bc46ac8ea&client_secret=e3903bf524744be4835f818adf5f64bc",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    token = data.access_token;
+    console.log(token);
   })
-    .then((response) => response.json())
-    .then((data) => {
-        token = data.access_token;
-        console.log(token);
-    })
-    .catch((error) => console.error("Error:", error));
+  .catch((error) => console.error("Error:", error));
 
 async function bigBoi() {
   console.log(artistInput);
@@ -47,7 +47,7 @@ async function bigBoi() {
     const options = {
       method: "GET",
       headers: {
-        Authorization: `Bearer  ${token}`
+        Authorization: `Bearer  ${token}`,
       },
     };
 
@@ -60,7 +60,7 @@ async function bigBoi() {
       artistID += result.artists.items[0].id;
     } catch (error) {
       console.error(error);
-      console.log('Search ID error')
+      console.log("Search ID error");
       const noArtistFound = document.createElement("p");
       noArtistFound.classList.add("sim-artist");
       noArtistFound.innerText = "Artist could not be found";
@@ -78,7 +78,7 @@ async function bigBoi() {
     const options = {
       method: "GET",
       headers: {
-        Authorization: `Bearer  ${token}`
+        Authorization: `Bearer  ${token}`,
       },
     };
 
@@ -86,14 +86,21 @@ async function bigBoi() {
       const response = await fetch(url, options);
       const result = await response.json();
       // console.log(result);
-      for (let i = 0; i <= 5 && result.artists[i] !== undefined; i++) { // second condition in case there aren't enough similar artists
+      for (let i = 0; i <= 5 && result.artists[i] !== undefined; i++) {
+        // second condition in for loop in case there aren't enough similar artists
         //create and append to DOM
         const name = document.createElement("p");
         name.classList.add("sim-artist");
         name.innerText = result.artists[i].name;
         simArtistContainer.appendChild(name);
         // console.log(result.artists[i].name)
-
+        // create and append image to DOM
+        const imageContainer = document.createElement("div");
+        simArtistContainer.appendChild(imageContainer);
+        const image = document.createElement("img");
+        image.src = result.artists[i].images[0].url;
+        image.classList.add("image")
+        imageContainer.appendChild(image);
         // create and append to DOM
         const url = document.createElement("a");
         url.classList.add("sim-url");
@@ -105,7 +112,7 @@ async function bigBoi() {
       }
     } catch (error) {
       console.error(error);
-      console.log('Similar artists error')
+      console.log("Similar artists error");
     }
   }
 
