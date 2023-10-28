@@ -4,7 +4,7 @@ const submitBtn = document.querySelector("#submit-btn");
 const artistInput = document.querySelector("#form-input");
 
 // let link = `https://api.spotify.com/v1/search?q=${artistInput}&type=artist`
-
+// contribution testing
 // fetch("https://accounts.spotify.com/api/token", {
 //   method: "POST",
 //   headers: {
